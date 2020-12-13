@@ -92,7 +92,7 @@
 	//var t2 = window.setInterval("$(\"#fuck\").html(\"高中生活已过\" + count2())", 10);
 
 	function getBG(){
-		$.ajax({
+		/*$.ajax({
 		url: "https://v1.alapi.cn/api/acg" + token,
 		dataType: 'JSON',
 		jsonp: 'callback',
@@ -120,7 +120,8 @@
 			localStorage.setItem("bgimg", "url(" + re.data.url + ")")
 			console.log(re.data.url)
 		}
-	})
+	})*/
+		localStorage.setItem("bgimg", "url(https://s3.ax1x.com/2020/12/13/re6vY6.png)")
 	}
 $(function() {
 	$(".bgimg").css("background-image", localStorage.getItem("bgimg"))
