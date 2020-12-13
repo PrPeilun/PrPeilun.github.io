@@ -1,0 +1,182 @@
+﻿<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="zh-cn">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+<title>佩伦主页 - 简洁浏览器主页</title>
+<meta http-equiv="refresh" content="300">
+<meta name="description" content="佩伦主页是一个简洁使用的浏览器主页。佩伦主页具有较高的实用性，无任何类型的广告，简洁易用。佩伦主页致力于成为您的浏览器主页。欢迎使用佩伦主页。">
+<meta name="keywords" content="佩伦主页,主页,浏览器主页">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="../js/tool.js"></script>
+<script src="../js/Chinese.js"></script>
+<script src="../js/English.js"></script>
+<script src="../js/birthday.js"></script>
+</head>
+<body style="display:none" class="test-5">
+<div class="bgimg"></div>
+<div class="navbar">
+	<header>
+	<h1 class="title transparent"><a href="https://sblpl.cn">佩伦主页 - 简洁浏览器主页</a></h1>
+	<a class="subtitle">致力于服务高二九班</a>
+	</header>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="../img/名言.png" alt="文化常识"><span>知识速记</span>
+	</div>
+	<p style="text-indent: 2em;font-size: 3.8rem;font-family: cursive;" id="mingyan"></p>
+	<script type="text/javascript">
+		function study() {
+			var choice = Math.floor(Math.random() * 100)
+			if (choice < 10) {
+				// 英语单词
+				var word = english[Math.floor(Math.random() * english.length)]
+				for (i = 0; i < word.length; i++) {
+					if (word.charAt(i) == " ") {
+						return "<b id=\"knowledge\">"+word.slice(0, i).replace(RegExp("[*]", "g"), " ")+"</b><span id=\"next\" style=\"font-family: NSimSun\">"+"&nbsp;" + word.slice(i)+"</span>"
+						break;
+					}
+				}
+			} else if (choice < 100) {
+				// 语文
+				var word = chinese[Math.floor(Math.random() * chinese.length)]
+				return word
+			} else {
+				// 生物
+				list = shengwu.split("#")
+				var word = list[Math.floor(Math.random() * list.length)]
+				return word
+			}
+		}
+
+	//$("#mingyan").html(chinese[Math.floor((Math.random()*chinese.length))])
+	$("#mingyan").html(study())
+	</script>
+</div>
+<div class="con transparent" style="background-color: #f1c40fAA;color: #e74c3c;font-weight: 900;">
+	<div class="title">
+		<img src="../img/今天.png" alt="高考"><span>高考倒计时</span>
+	</div>
+	<p style="text-align: center;font-size: 4.25rem;letter-spacing:16px;" id="fuck"></p>
+</div>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="../img/一言.png" alt="一言"><span id="yiyanTitle">每日一言</span>
+	</div>
+	<p style="text-indent: 2em;font-size: 3.6rem;font-family: cursive;" id="yiyan"></p>
+</div>
+<script type="text/javascript">
+	function count() {
+	    var EndTime = new Date(2020, 11, 15);
+	    var NowTime = new Date();
+	    var t = EndTime.getTime() - NowTime.getTime();
+	    var d = Math.ceil(t / 1000 / 60 / 60 / 24);
+	    return(d)
+	}
+
+
+	function count2() {
+	    var EndTime = new Date(2021, 5, 7);
+	    var NowTime = new Date();
+	    var t = EndTime.getTime() - NowTime.getTime();
+	    var d = t / (1000 * 1000 * 60 * 60 * 24) * 100;
+	    return (100 - d).toFixed(5) + "%"
+	}
+
+	$("#fuck").html("距离下次月考还有 " + count() + " 天")
+	
+	//$("#fuck").html("高中生活已过" + count2() + "")
+	//var t2 = window.setInterval("$(\"#fuck\").html(\"高中生活已过\" + count2())", 10);
+
+	function getBG(){
+		$.ajax({
+		url: "https://v1.alapi.cn/api/acg" + token,
+		dataType: 'JSON',
+		jsonp: 'callback',
+		type: "GET",
+		data: {
+			format: "json"
+		},
+		success: function(re) {
+			$.ajax({
+				url: "https://v1.alapi.cn/api/ai/image" + token,
+				dataType: 'JSON',
+				jsonp: 'callback',
+				type: "GET",
+				data: {
+					url: re.data.url
+				},
+				success: function(re) {
+					console.log(re.data.antiporn.result[2].probability)
+					if(re.data.antiporn.result[2].probability < 0.999){
+						getBG()
+					}
+					console.log(re)
+				}
+			})
+			localStorage.setItem("bgimg", "url(" + re.data.url + ")")
+			console.log(re.data.url)
+		}
+	})
+	}
+$(function() {
+	$(".bgimg").css("background-image", localStorage.getItem("bgimg"))
+	if (localStorage.getItem("bgimg") == "") {
+		$(".bgimg").css("background-image", "url(https://file.alapi.cn/image/comic/223528-1518014128a059.jpg)")
+	}
+	$("body").fadeIn(800)
+	getBG()
+	$.ajax({
+		url: "https://v1.alapi.cn/api/hitokoto" + token,
+		dataType: 'JSON',
+		jsonp: 'callback',
+		type: "GET",
+		data: {
+			format: "json"
+		},
+		success: function(re) {
+			$("#yiyan").html(re.data.hitokoto)
+
+
+			$.ajax({
+				url: "https://v1.alapi.cn/api/fanyi" + token,
+				dataType: 'JSON',
+				jsonp: 'callback',
+				type: "GET",
+				data: {
+					format: "json",
+					q: re.data.hitokoto,
+					from: "ch",
+					to: "en"
+				},
+				success: function(re) {
+					console.log(re.data)
+					$("#yiyan").html(re.data.trans_result[0].dst + " " + re.data.trans_result[0].src)
+				}
+			})
+
+
+			type = ["动画", "漫画", "游戏", "文学", "原创", "来自网络", "其他", "影视", "诗词", "网易云", "哲学", "抖机灵"]
+			$("#yiyanTitle").html("每日一言 - " + type[re.data.type.charCodeAt() - 97])
+		}
+	})
+	/*$.ajax({
+		url: "https://v1.alapi.cn/api/dog" + token,
+		dataType: 'JSON',
+		jsonp: 'callback',
+		type: "GET",
+		data: {
+			format: "json"
+		},
+		success: function(re) {
+			$("#yiyan").html(re.data.content)
+		}
+	})*/
+})
+
+</script>
+</body>
+</html>

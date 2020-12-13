@@ -1,0 +1,244 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="zh-cn">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+<title>佩伦主页 - 简洁浏览器主页</title>
+<meta name="description" content="佩伦主页是一个简洁使用的浏览器主页。佩伦主页具有较高的实用性，无任何类型的广告，简洁易用。佩伦主页致力于成为您的浏览器主页。欢迎使用佩伦主页。">
+<meta name="keywords" content="佩伦主页,主页,浏览器主页">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/tool.js"></script>
+</head>
+<body style="display:none" class="test-5">
+<div style="
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    text-align: center;
+    font-size: 4rem;
+    user-select: none;
+    position: fixed;
+    z-index: 1000;
+    display: none;
+" id="liulanqi">请点击右上角，选择浏览器打开</div>
+<div class="bgimg"></div>
+<div class="navbar">
+	<header>
+	<h1 class="title transparent"><a href="https://sblpl.cn">佩伦主页 - 简洁浏览器主页</a></h1>
+	<a class="subtitle" onclick="location.reload()">2020 年 1 月 1 日 星期三 20：20：20</a>
+	</header>
+</div>
+<!--
+<div class="con transparent" style="text-align: center;">
+	<div class="title">
+		<img src="img/天气.png" alt="天气"><span id="geren">实时天气</span>
+	</div>
+	<iframe scrolling="no" src="https://tianqiapi.com/api.php?style=ya&skin=orange" frameborder="0" allowtransparency="true" style="width:250px;"></iframe>
+</div>
+-->
+<div class="con transparent">
+	<div class="title">
+		<img src="img/网易云.png" alt="网易云"><span>网易云热评</span>
+	</div>
+	<div id="reping">
+		<div class="touxiang"></div>
+		<div class="info"></div>
+		<audio controls style="width: 100%;margin-top: 0.8rem;"></audio>
+	</div>
+	<script type="text/javascript">
+		$.ajax({
+			url: "https://v1.alapi.cn/api/comment" + token,
+			dataType: 'JSON',
+			jsonp: 'callback',
+			type: "GET",
+			data: {},
+			success: function(re) {
+				$("#reping .touxiang").css("background-image", "url(" + re.data.image + ")")
+				$("#reping .touxiang").css("width", "8rem")
+				$("#reping .touxiang").css("height", "8rem")
+				$("#reping audio").attr("src", re.data.mp3_url + token2)
+				$("#reping .info").html("<b>歌曲：</b>" + re.data.title + "</br><b>歌手：</b>" + re.data.author
+					+ "</br><b>评论用户：</b>" + re.data.comment_nickname + "</br><b>热评：</b>" + re.data.comment_content)
+				//$("#reping .touxiang").css("height", $("#reping .info").css("height"))
+			}
+		})
+	</script>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="img/一言.png" alt="一言"><span id="yiyanTitle">每日一言</span>
+	</div>
+	<p style="text-indent: 2em;font-size: 2rem;font-family: cursive;" id="yiyan"></p>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="img/微博.png" alt="微博"><span>微博热搜</span>
+	</div>
+	<div id="weibo"></div>
+	<script type="text/javascript">
+		$.ajax({
+			url: "https://v1.alapi.cn/api/new/wbtop" + token,
+			dataType: 'JSON',
+			jsonp: 'callback',
+			type: "GET",
+			data: {
+				num: 10
+			},
+			success: function(re) {
+				for (var i = 0; i < 10; i++) {
+					$("#weibo").html($("#weibo").html() + "<a href='https://s.weibo.com/weibo/" + re.data[i].hot_word + "' style='font-size: 1.3rem;' target='_blank'>" + re.data[i].hot_word + "</a><span style='font-size: 1.65rem;margin: 10 7;'> | </span>")
+				}
+			}
+		})
+	</script>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="img/知乎.png" alt="知乎"><span>知乎日报</span>
+	</div>
+	<div id="zhihu"></div>
+	<script type="text/javascript">
+		$.ajax({
+			url: "https://v1.alapi.cn/api/zhihu/latest" + token,
+			dataType: 'JSON',
+			jsonp: 'callback',
+			type: "GET",
+			data: {},
+			success: function(re) {
+				for (var i = 0; i < re.data.stories.length; i++) {
+					$("#zhihu").html($("#zhihu").html() + "<a href='" + re.data.stories[i].url + "' style='font-size: 1.3rem;' target='_blank'>▶ &nbsp;" + re.data.stories[i].title + "</a></br>")
+				}
+			}
+		})
+	</script>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="img/名言.png" alt="名言"><span>名人名言</span>
+	</div>
+	<p style="text-indent: 2em;font-size: 2rem;font-family: cursive;" id="mingyan"></p>
+	<p style="text-indent: 2em;font-size: 2rem;font-family: monospace;" id="english"></p>
+	<p style="font-size: 2rem;font-family: cursive;text-align: right;" id="mingyan-author"></p>
+	<script type="text/javascript">
+		$.ajax({
+			url: "https://v1.alapi.cn/api/mingyan" + token,
+			dataType: 'JSON',
+			jsonp: 'callback',
+			type: "GET",
+			data: {},
+			success: function(re) {
+				$("#mingyan").html(re.data.content)
+				//$("#english").html(fanyi(re.data.content))
+				$("#mingyan-author").html("——" + re.data.author)
+			}
+		})
+	</script>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="img/情话.png" alt="情话"><span>土味情话</span>
+	</div>
+	<p style="text-indent: 2em;font-size: 2rem;font-family: cursive;" id="qinghua"></p>
+	<p style="text-indent: 2em;font-size: 2rem;" id="pinyin"></p>
+	<script type="text/javascript">
+		$.ajax({
+			url: "https://v1.alapi.cn/api/qinghua" + token,
+			dataType: 'JSON',
+			jsonp: 'callback',
+			type: "GET",
+			data: {},
+			success: function(re) {
+				$("#qinghua").html(re.data.content)
+			}
+		})
+	</script>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="img/鸡汤.png" alt="鸡汤"><span>毒鸡汤</span>
+	</div>
+	<p style="text-indent: 2em;font-size: 2rem;font-family: cursive;" id="jitang">
+	<script type="text/javascript">
+		$.ajax({
+			url: "https://v1.alapi.cn/api/soul" + token,
+			dataType: 'JSON',
+			jsonp: 'callback',
+			type: "GET",
+			data: {},
+			success: function(re) {
+				$("#jitang").html(re.data.title)
+			}
+		})
+	</script>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="img/今天.png" alt="历史上的今天"><span id="jintian">历史上的今天</span>
+	</div>
+	<p style="font-size: 1.5rem;font-weight: bold;" id="jintianTitle"></p>
+	<p style="text-indent: 2em;font-size: 1.2rem;" id="jintianContent"></p>
+</div>
+<div id="con">
+	<div class="con pt transparent">
+		<div class="title transparent">
+			<img src="img/网站.png" alt="网站相关"><span>网站相关 - 欢迎反馈</span>
+		</div>
+		<a href="choose.html" class="btn" target="_self">帮你选择</a><a href="setting.html" class="btn" target="_self">网站设置</a><a href="https://www.jianshu.com/p/bc906dffa963" class="btn" target="_blank">网站介绍</a><a href="https://wj.qq.com/s2/3808169/f7d3/" class="btn" target="_blank">反馈建议</a><a href="https://sblpl.cn/" class="btn" target="_blank">佩伦导航</a>
+	</div>
+	<div class="con transparent">
+		<div class="title transparent">
+			<img src="img/鸡腿.png" alt="打赏"><span>感谢使用</span>
+		</div>
+		<h2 style="text-align:center" class="shaky">欢迎把本站设置为浏览器主页</h2>
+	</div>
+</div>
+<script type="text/javascript">
+setInterval("$(\".subtitle\").html(getFullTime())",1000);
+$(".bgimg").css("background-image", "url(https://v1.alapi.cn/api/acg" + token + ")")
+if(localStorage.getItem("name") == null && !is_weixnQQ())	location.href = "https://lplnb.top/setting.html"
+$(function() {
+	$("body").fadeIn(800)
+	if (is_weixnQQ()) {
+    	alert("请点击右上角按钮, 点击使用浏览器打开");
+    	$("#liulanqi").css("display", "block")
+	}
+
+	var bian = Number($(".con").css("width").substr(0, $(".con").css("width").length - 2)) - 225
+	if(bian > 150)	bian = 150; else bian = 0;
+	$(".touxiang").css("width", bian)
+	$(".touxiang").css("height", bian)
+
+	$.ajax({
+		url: "https://v1.alapi.cn/api/hitokoto" + token,
+		dataType: 'JSON',
+		jsonp: 'callback',
+		type: "GET",
+		data: {
+			format: "json"
+		},
+		success: function(re) {
+			$("#yiyan").html(re.data.hitokoto)
+			type = ["动画", "漫画", "游戏", "文学", "原创", "来自网络", "其他", "影视", "诗词", "网易云", "哲学", "抖机灵"]
+			$("#yiyanTitle").html("每日一言 - " + type[re.data.type.charCodeAt() - 97])
+		}
+	})
+
+	$.ajax({
+		url: "https://v1.alapi.cn/api/eventHitory" + token,
+		dataType: 'JSON',
+		jsonp: 'callback',
+		type: "GET",
+		data: {},
+		success: function(re) {
+			var index = Math.floor(Math.random() * re.data.length);
+			$("#jintian").html("历史上的今天 - " + Math.floor(re.data[index].monthday / 100) + " 月 " + (re.data[index].monthday % 100) + " 日")
+			$("#jintianTitle").html(re.data[index].year + " 年：" + re.data[index].title)
+			$("#jintianContent").html(re.data[index].desc)
+		}
+	})
+})
+</script>
+</body>
+</html>

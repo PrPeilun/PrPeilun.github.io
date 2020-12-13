@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="zh-cn">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+<title>佩伦主页 - 简洁浏览器主页</title>
+<meta name="description" content="佩伦主页是一个简洁使用的浏览器主页。佩伦主页具有较高的实用性，无任何类型的广告，简洁易用。佩伦主页致力于成为您的浏览器主页。欢迎使用佩伦主页。">
+<meta name="keywords" content="佩伦主页,主页,浏览器主页">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<script src="js/tool.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body style="display:none">
+<div class="bgimg"></div>
+<script type="text/javascript">
+	$(".bgimg").css("background-image", "url('https://v1.alapi.cn/api/acg')")
+	$("body").fadeIn(800)
+</script>
+<div style="
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    text-align: center;
+    font-size: 4rem;
+    user-select: none;
+    position: fixed;
+    z-index: 1000;
+    display: none;
+" id="liulanqi">请点击右上角，选择浏览器打开</div>
+<div class="navbar">
+	<header>
+	<h1 class="title transparent"><a href="https://sblpl.cn">佩伦主页 - 简洁浏览器主页</a></h1>
+	<a class="subtitle">致力于成为您的浏览器主页</a></header>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<span>您的昵称</span>
+	</div>
+	<div class="input fullwidth">
+		<label class="input-title">呐，首先~你希望我怎么称呼你呢？</label><input placeholder="张老三" type="text" id="inname">
+	</div>
+</div>
+<!--
+<div class="con transparent">
+	<div class="title">
+		<span>您的城市 (用于获取天气)</span>
+	</div>
+	<div class="input fullwidth">
+		<input placeholder="长春" type="text" id="incity">
+	</div>
+</div>-->
+<div class="con transparent">
+	<div class="title">
+		<span>您的 QQ 号</span>
+	</div>
+	<div class="input fullwidth">
+		<input placeholder="123456789" type="text" id="inqq">
+	</div>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<span>保存</span>
+	</div>
+	<div class="select fullwidth">
+		<div class="btn save">
+			保存设置
+		</div>
+		<div class="btn nosave">
+			取消保存
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	if (is_weixnQQ()) {
+    	alert("请点击右上角按钮, 点击使用浏览器打开");
+    	$("#liulanqi").css("display", "block")
+	}
+	$("#inname").val(localStorage.getItem("name"))
+	$("#incity").val(localStorage.getItem("city"))
+	$("#inqq").val(localStorage.getItem("qq"))
+	$(".save").click(function() {
+		localStorage.setItem("name", $("#inname").val())
+		localStorage.setItem("city", $("#incity").val())
+		localStorage.setItem("qq", $("#inqq").val())
+		window.location.href = "https://lplnb.top/"
+	})
+	$(".nosave").click(function() {
+		window.location.href = "https://lplnb.top/"
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="zh-cn">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+<title>佩伦主页 - 帮你选择</title>
+<meta name="description" content="佩伦主页是一个简洁使用的浏览器主页。佩伦主页具有较高的实用性，无任何类型的广告，简洁易用。佩伦主页致力于成为您的浏览器主页。欢迎使用佩伦主页。">
+<meta name="keywords" content="佩伦主页,主页,浏览器主页">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/tool.js"></script>
+</head>
+<body style="display:none" class="test-5">
+<div class="bgimg"></div>
+<div class="navbar">
+	<header>
+	<h1 class="title transparent"><a href="https://sblpl.cn">佩伦主页 - 帮你选择</a></h1>
+	<a class="subtitle" onclick="location.reload()">2020 年 1 月 1 日 星期三 20：20：20</a>
+	</header>
+</div>
+<div class="con transparent">
+	<div class="title">
+		<img src="img/选项.png" alt="名言">
+		<span>帮你选择</span>
+	</div>
+	<div class="input fullwidth">
+		<label class="input-title">请输入选项，一行一个</label>
+		<textarea rows="10" placeholder="吃饭&#13;&#10;睡觉&#13;&#10;打游戏&#13;&#10;......" type="text" id="option"></textarea>
+	</div>
+	<div class="btn choose">
+		选择
+	</div>
+	<div class="btn" onclick="localStorage.setItem('record', '');showAll()">
+		清空历史记录
+	</div>
+	<div id="record"></div>
+</div>
+<script type="text/javascript">
+showAll()
+setInterval("$(\".subtitle\").html(getFullTime())",1000);
+$(".bgimg").css("background-image", "url(https://v1.alapi.cn/api/acg" + token + ")")
+$(function() {
+	$("body").fadeIn(800)
+})
+$(".choose").click(function() {
+	var record = $("#option").val().replace(/\n/g, "**");
+	var num = Math.floor(Math.random()*$("#option").val().split("\n").length)
+	for (var i = 10000; i >= 0; i--) {
+		num = Math.floor(Math.random()*$("#option").val().split("\n").length)
+	}
+	var a = "建议您选择：" + $("#option").val().split("\n")[num]
+	$(".input-title").html(a)
+	alert(a)
+	if(localStorage.getItem("record")) record = record + "**" + localStorage.getItem("record")
+	localStorage.setItem("record", record)
+	showAll();
+})
+
+function addIt(text){
+	if ($("#option").val()) $("#option").val($("#option").val() + "\n")
+	$("#option").val($("#option").val() + text)
+}
+
+function showAll(){
+	$("#record").html("")
+	var records = localStorage.getItem("record").split("**")
+	for (var i = 0; i < records.length; i++) {
+		$("#record").html($("#record").html() + "<div class=\"btn\" onclick=\"addIt('" + records[i] + "')\">" + records[i] + "</div>")
+	}
+}
+</script>
+</body>
+</html>
