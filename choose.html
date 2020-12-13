@@ -45,7 +45,7 @@ $(function() {
 $(".choose").click(function() {
 	var record = $("#option").val().replace(/\n/g, "**");
 	var num = Math.floor(Math.random()*$("#option").val().split("\n").length)
-	for (var i = 10000; i >= 0; i--) {
+	for (var i = 1000000; i >= 0; i--) {
 		num = Math.floor(Math.random()*$("#option").val().split("\n").length)
 	}
 	var a = "建议您选择：" + $("#option").val().split("\n")[num]
