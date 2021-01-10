@@ -140,7 +140,6 @@ var words = [
 	"associate/vt.使发生联系;使联合;结交",
 	"associate with/与……联系",
 	"barrier/n.障碍物;栅栏;屏障",
-	"Great Barrier Reef/大堡礁",
 	"brochure/n.(作介绍或宣传用的)小册子",
 	"Commonwealth/n.国家;共和国;联邦",
 	"Oceania/n.大洋洲",
