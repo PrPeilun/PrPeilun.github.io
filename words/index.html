@@ -15,7 +15,7 @@
 <div class="navbar">
 	<div class="bgimg"></div>
 	<header>
-		<h1 class="title transparent"><a>佩伦主页 - 简洁浏览器主页</a></h1>
+		<h1 class="title transparent"><a onclick="index--;">佩伦主页 - 简洁浏览器主页</a></h1>
 		<a class="subtitle">致力于服务高三六班</a>
 	</header>
 </div>
@@ -64,10 +64,20 @@
 		} else {
 			$("#word").html(word.split("/")[0] + "<br><h1 class='hanyi'>" + hanyi + "</h1>")
 			index ++;
-			if(index == words[unit].length)	index = 0
+			if(index == words[unit].length){
+				index = 0;
+				alert("本单元已结束！点击重新开始")
+				for (var i = 0; i < words.length; i++) {
+					shuffleSelf(words[i])
+				}
+			}
 			showHanyi = true
 		}
 	});
+
+	$(document).keydown(function(event){
+		if(event.keyCode == 32)  $("body").click()
+    });
 </script>
 <script type="text/javascript">
 	$(".bgimg").css("background-image", "url(https://cdn.jsdelivr.net/gh/prpeilun/prpeilun.github.io/words/img/sky.jpg)")
