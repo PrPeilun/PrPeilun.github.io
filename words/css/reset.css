@@ -71,7 +71,9 @@ header .title a{color:#2f3e4c;cursor:pointer}
 @media (max-width:1050px){#con .btn,.yushe{width:calc(25% - .875rem)}
 #con #jia,#con #jian{width:calc((25% - .875rem)/ 2)}}
 @media (max-width:900px){
-	#con .btn,.yushe{width:calc(33.33333% - .875rem)
+	#con .btn,.yushe{
+		width:calc(33.33333% - .875rem);
+	}
 	.myWord {
 	    font-size: 3.2375rem;
 	    line-height: 4.25rem;
@@ -84,8 +86,8 @@ header .title a{color:#2f3e4c;cursor:pointer}
 		line-height: 3.25rem;
 		text-align: center;
 	}
+	#con #jia,#con #jian{width:calc((33.33333% - .875rem)/ 2)}
 }
-#con #jia,#con #jian{width:calc((33.33333% - .875rem)/ 2)}}
 @media (max-width:700px){#con .btn{margin:.375rem .3125rem;width:calc(50% - .625rem);border:.0625rem solid var(--color-text-placeholder);box-shadow:none}
 #con #jia,#con #jian{width:calc((50% - .625rem)/ 2)}
 .yushe{width:calc(50% - .825rem)}}
