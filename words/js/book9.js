@@ -1,9 +1,8 @@
-var words = [
+﻿var words = [
 [
 	"hurdling/n.跨栏运动",
 	"boxing/n.拳击",
 	"hula hooping/玩呼啦圈",
-	"jumping jack/跳爆竹",
 	"somersaulting/n.翻筋斗",
 	"lunge/n.＆v.刺;跃进;前冲",
 	"Guinness Book of World Records/《吉尼斯世界纪录大全》",
@@ -18,7 +17,7 @@ var words = [
 	"extreme/adj.极端的;偏激的",
 	"vomit/呕吐n.呕吐;呕吐物",
 	"gymnastics/n.体操;体能训练",
-	"gymnastics/adv.体能训练方面",
+	"gymnastically/adv.体能训练方面",
 	"unfit/adj.不适宜的;不太健康的",
 	"fascinate/vt.使着迷;入迷",
 	"meditation/n.沉思;冥想",

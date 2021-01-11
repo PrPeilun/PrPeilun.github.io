@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="zh-cn">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+<title>佩伦主页 - 简洁浏览器主页</title>
+<meta name="description" content="佩伦主页是一个简洁使用的浏览器主页。佩伦主页具有较高的实用性，无任何类型的广告，简洁易用。佩伦主页致力于成为您的浏览器主页。欢迎使用佩伦主页。">
+<meta name="keywords" content="佩伦主页,主页,浏览器主页">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/tool.js"></script>
+<script src="js/book9.js"></script>
+</head>
+<body style="display:none" class="test-5">
+<div class="navbar">
+	<div class="bgimg"></div>
+	<header>
+		<h1 class="title transparent"><a onclick="index--;">佩伦主页 - 简洁浏览器主页</a></h1>
+		<a class="subtitle">致力于服务高三六班</a>
+	</header>
+</div>
+<div class="select">
+	<select id="selectUnit">
+		<option value="0">Book9 Unit1</option>
+		<option value="1">Book9 Unit2</option>
+		<option value="2">Book9 Unit3</option>
+		<option value="3">Book9 Unit4</option>
+		<option value="4">Book9 Unit5</option>
+	</select>
+</div>
+<div>
+	<h1 class="myWord" id="word">Tap to start</h1>
+</div>
+<script type="text/javascript">
+	document.cookie = "SameSite=None"
+	for (var i = 0; i < words.length; i++) {
+		shuffleSelf(words[i])
+		/* 测试单词列表
+		for(var k = 0;k < words[i].length; k++){
+			if(words[i][k].split("/")[1] == undefined)
+				alert(words[i][k].split("/")[0])
+			console.log(words[i][k].split("/")[0])
+		}*/
+	}
+
+	var hanyi = "点击开始"
+	var index = 0;
+	var unit = 0;
+	var showHanyi = true
+
+	$("body").not(".select").click(function(){
+		var word = words[unit][index]
+		if(showHanyi){
+			$("#word").slideUp(300, function() {
+				$("#word").html(word.split("/")[0])
+				hanyi = word.split("/")[1]
+				$("#word").slideDown(200)
+			})
+			showHanyi = false
+		} else {
+			$("#word").html(word.split("/")[0] + "<br><h1 class='hanyi'>" + hanyi + "</h1>")
+			index ++;
+			if(index == words[unit].length){
+				index = 0;
+				for (var i = 0; i < words.length; i++) {
+					shuffleSelf(words[i])
+				}
+			}
+			showHanyi = true
+		}
+	});
+
+	$(document).keydown(function(event){
+		if(event.keyCode == 32)  $("body").click()
+    });
+</script>
+<script type="text/javascript">
+	$(".bgimg").css("background-image", "url(https://cdn.jsdelivr.net/gh/prpeilun/prpeilun.github.io/words/img/sky.jpg)")
+	$("body").fadeIn(800)
+	setTimeout(function(){$("body").click()},60000);
+	$("#selectUnit").change(function(){
+		unit = $("#selectUnit").val()
+		showHanyi = true
+	})
+</script>
+</body>
+</html>
