@@ -25,14 +25,15 @@
 </div>
 <script type="text/javascript">
 	document.cookie = "SameSite=None"
-	shuffleSelf(words)
+	//shuffleSelf(words)
 	var index = 0;
 	var unit = 0;
 	var music = document.getElementById("audio")
 
 	$("body").click(function(){
+		if (index == 0) {requestFullScreen()}
 		var word = words[index]
-		music.src = "http://dict.youdao.com/dictvoice?type=0&audio=" + words[index];
+		music.src = "http://dict.youdao.com/dictvoice?type=1&audio=" + words[index];
 		music.play()
 		$("#word").slideUp(300, function() {
 			$("#word").html(word)
@@ -40,6 +41,17 @@
 		})
 		index++
 	});
+
+	function requestFullScreen(element) {
+	    var de = document.querySelector(element) || document.documentElement;
+	    if (de.requestFullscreen) {
+	        de.requestFullscreen();
+	    } else if (de.mozRequestFullScreen) {
+	        de.mozRequestFullScreen();
+	    } else if (de.webkitRequestFullScreen) {
+	        de.webkitRequestFullScreen();
+	    }
+	}
 </script>
 <script type="text/javascript">
 	$(".bgimg").css("background-image", "url(https://cdn.jsdelivr.net/gh/prpeilun/prpeilun.github.io/words/img/sky.jpg)")
