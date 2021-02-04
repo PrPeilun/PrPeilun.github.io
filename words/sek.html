@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="content-language" content="zh-cn">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+<title>佩伦主页 - 简洁浏览器主页</title>
+<meta name="description" content="佩伦主页是一个简洁使用的浏览器主页。佩伦主页具有较高的实用性，无任何类型的广告，简洁易用。佩伦主页致力于成为您的浏览器主页。欢迎使用佩伦主页。">
+<meta name="keywords" content="佩伦主页,主页,浏览器主页">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="js/tool.js"></script>
+<script src="js/book4.js"></script>
+</head>
+<body style="display:none" class="test-5">
+<div class="navbar">
+	<div class="bgimg"></div>
+	<header>
+		<h1 class="title transparent"><a>佩伦主页 - 简洁浏览器主页</a></h1>
+		<a class="subtitle">宋尔康专用</a>
+	</header>
+</div>
+<div>
+	<h1 class="myWord" id="word">Tap to start</h1>
+	<audio style="width: 100%;margin-top: 0.2rem" id="audio"></audio>
+</div>
+<script type="text/javascript">
+	document.cookie = "SameSite=None"
+	shuffleSelf(words)
+	var index = 0;
+	var unit = 0;
+	var music = document.getElementById("audio")
+
+	$("body").click(function(){
+		var word = words[index]
+		music.src = "http://dict.youdao.com/dictvoice?type=0&audio=" + words[index];
+		music.play()
+		$("#word").slideUp(300, function() {
+			$("#word").html(word)
+			$("#word").slideDown(200)
+		})
+		index++
+	});
+</script>
+<script type="text/javascript">
+	$(".bgimg").css("background-image", "url(https://cdn.jsdelivr.net/gh/prpeilun/prpeilun.github.io/words/img/sky.jpg)")
+	$("body").fadeIn(800)
+</script>
+</body>
+</html>
