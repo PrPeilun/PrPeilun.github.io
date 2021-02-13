@@ -50,7 +50,7 @@
 	</div>
 	<script type="text/javascript">
 		$.ajax({
-			url: "https://v1.alapi.cn/api/comment" + token,
+			url: "https://v2.alapi.cn/api/comment" + token,
 			dataType: 'JSON',
 			jsonp: 'callback',
 			type: "GET",
@@ -80,7 +80,7 @@
 	<div id="weibo"></div>
 	<script type="text/javascript">
 		$.ajax({
-			url: "https://v1.alapi.cn/api/new/wbtop" + token,
+			url: "https://v2.alapi.cn/api/new/wbtop" + token,
 			dataType: 'JSON',
 			jsonp: 'callback',
 			type: "GET",
@@ -102,7 +102,7 @@
 	<div id="zhihu"></div>
 	<script type="text/javascript">
 		$.ajax({
-			url: "https://v1.alapi.cn/api/zhihu/latest" + token,
+			url: "https://v2.alapi.cn/api/zhihu/latest" + token,
 			dataType: 'JSON',
 			jsonp: 'callback',
 			type: "GET",
@@ -124,7 +124,7 @@
 	<p style="font-size: 2rem;font-family: cursive;text-align: right;" id="mingyan-author"></p>
 	<script type="text/javascript">
 		$.ajax({
-			url: "https://v1.alapi.cn/api/mingyan" + token,
+			url: "https://v2.alapi.cn/api/mingyan" + token,
 			dataType: 'JSON',
 			jsonp: 'callback',
 			type: "GET",
@@ -145,7 +145,7 @@
 	<p style="text-indent: 2em;font-size: 2rem;" id="pinyin"></p>
 	<script type="text/javascript">
 		$.ajax({
-			url: "https://v1.alapi.cn/api/qinghua" + token,
+			url: "https://v2.alapi.cn/api/qinghua" + token,
 			dataType: 'JSON',
 			jsonp: 'callback',
 			type: "GET",
@@ -163,7 +163,7 @@
 	<p style="text-indent: 2em;font-size: 2rem;font-family: cursive;" id="jitang">
 	<script type="text/javascript">
 		$.ajax({
-			url: "https://v1.alapi.cn/api/soul" + token,
+			url: "https://v2.alapi.cn/api/soul" + token,
 			dataType: 'JSON',
 			jsonp: 'callback',
 			type: "GET",
@@ -197,7 +197,7 @@
 </div>
 <script type="text/javascript">
 setInterval("$(\".subtitle\").html(getFullTime())",1000);
-$(".bgimg").css("background-image", "url(https://v1.alapi.cn/api/acg" + token + ")")
+$(".bgimg").css("background-image", "url(https://v2.alapi.cn/api/acg" + token + ")")
 if(localStorage.getItem("name") == null && !is_weixnQQ())	location.href = "https://lplnb.top/setting.html"
 $(function() {
 	$("body").fadeIn(800)
@@ -212,7 +212,7 @@ $(function() {
 	$(".touxiang").css("height", bian)
 
 	$.ajax({
-		url: "https://v1.alapi.cn/api/hitokoto" + token,
+		url: "https://v2.alapi.cn/api/hitokoto" + token,
 		dataType: 'JSON',
 		jsonp: 'callback',
 		type: "GET",
@@ -227,7 +227,7 @@ $(function() {
 	})
 
 	$.ajax({
-		url: "https://v1.alapi.cn/api/eventHitory" + token,
+		url: "https://v2.alapi.cn/api/eventHitory" + token,
 		dataType: 'JSON',
 		jsonp: 'callback',
 		type: "GET",
