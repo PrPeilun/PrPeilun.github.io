@@ -89,8 +89,8 @@ function is_weixnQQ() {
     return false
 }
 
-var token = "?token=leCxrtexr0Bj3QfChG0g"
-var token2 = "&token=leCxrtexr0Bj3QfChG0g"
+var token = "?token=qXRLP50xskWLwIx3"
+var token2 = "&token=qXRLP50xskWLwIx3"
 
 function fanyi(ch) {
   var en;
